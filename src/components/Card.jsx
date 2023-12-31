@@ -1,12 +1,14 @@
 import React from "react";
 
-const Card = () => {
+const Card = (props) => {
+  const{_id,CategoryName,name,img,options,description}=props.itemData;
+  let keys=Object.keys(options[0]);
   return (
     <div>
       <div className="card mt-2" style={{ width: "18rem", maxHeight: "350px"}}>
-        <img src="https://media.houseandgarden.co.uk/photos/620ce90624d2ae88e807bbee/1:1/w_5761,h_5761,c_limit/Kukhura-ko-momo---Steamed-chicken-momos-with-ginger-&-chilli-with-a-tomato-sesame-chutney-.jpg" className="card-img-top" alt="..." style={{width:"100%",height:"200px",objectFit:"cover" }} />
+        <img src={img} className="card-img-top" alt="..." style={{height:"200px",objectFit:'fill'}}/>
         <div className="card-body">
-          <h5 className="card-title">Card title</h5>
+          <h5 className="card-title">{name}</h5>
           <p className="card-text">This is a card which will show food Item.</p>
           <div className="container ">
             <select
@@ -27,8 +29,11 @@ const Card = () => {
               name="quantity"
               id="quantity"
             >
-              <option value="half">Half</option>
-              <option value="full">Full</option>
+              {keys.map((option)=>{
+                return(<>
+                <option key={option} value={option}>{option}</option>
+                </>)
+              })}
             </select>
             <div className="d-inline h-100 fs-6">
                 Total Price

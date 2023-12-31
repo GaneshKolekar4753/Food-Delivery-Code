@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [userDetials, setuserDetails] = useState({ email: "", password: "" });
-  let navigate=useNavigate();
+  let navigate = useNavigate();
   //create function to handle submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,14 +18,18 @@ const Login = () => {
       }),
     });
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
 
     if (!json.success) {
       alert(json.message);
     }
-    setuserDetails({email:"",password:""});
-  //if logged in then navigate to home page
-    navigate('/');
+    if (json.success) {
+      setuserDetails({ email: "", password: "" });
+      //if logged in then navigate to home page
+      navigate("/");
+      localStorage.setItem("authToken", json.authToken);
+      console.log(localStorage.getItem("authToken"));
+    }
   };
 
   const onchange = (e) => {
