@@ -1,6 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const Navbar = () => {
+  const navigate=useNavigate();
+  const handlelogout=()=>{
+    localStorage.removeItem('authToken');
+    navigate("/login");
+  }
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
   <div className="container-fluid">
@@ -11,15 +16,29 @@ const Navbar = () => {
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+          <Link className="nav-link active fs-5 fw-bolder" aria-current="page" to="/">Home</Link>
         </li>
+        {(localStorage.getItem("authToken"))?
         <li className="nav-item">
-          <Link className="nav-link" to="/login">Login</Link>
+        <Link className="nav-link active fs-5 fw-bolder" aria-current="page" to="/">My Orders</Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/createuser">Signup</Link>
-        </li>
+        :""
+        }
       </ul>
+    </div>
+    <div className='d-flex'>
+      {(localStorage.getItem('authToken'))?
+      <>
+      <div className='btn bg-white text-success mx-1 fw-bolder'>My Cart</div>
+       <Link className="btn bg-white text-success mx-1 fw-bolder " to="/login" onClick={handlelogout}>Logout</Link>
+
+      </>
+      :<>
+        <Link className="btn bg-white text-success mx-1 fw-bolder " to="/login">Login</Link>
+          <Link className="btn bg-white text-success mx-1 fw-bolder" to="/createuser">Signup</Link>
+        </>
+      }
+          
     </div>
   </div>
 </nav>
