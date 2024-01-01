@@ -28,7 +28,7 @@ const Login = () => {
       //if logged in then navigate to home page
       navigate("/");
       localStorage.setItem("authToken", json.authToken);
-      console.log(localStorage.getItem("authToken"));
+      // console.log(localStorage.getItem("authToken"));
     }
   };
 

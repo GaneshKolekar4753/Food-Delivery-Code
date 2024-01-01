@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Badge from 'react-bootstrap/Badge';
+import Modal from '../modal';
+import Cart from '../pages/Cart';
+import { useCart } from '../context&useredusers/context';
 const Navbar = () => {
+
+  const [cartview,setCartview]=useState(false);
   const navigate=useNavigate();
+  const data=useCart();
   const handlelogout=()=>{
     localStorage.removeItem('authToken');
     navigate("/login");
@@ -29,7 +36,11 @@ const Navbar = () => {
     <div className='d-flex'>
       {(localStorage.getItem('authToken'))?
       <>
-      <div className='btn bg-white text-success mx-1 fw-bolder'>My Cart</div>
+      <div className='btn bg-white text-success mx-1 fw-bolder' onClick={()=>setCartview(true)}>
+        My Cart{" "}
+        <Badge pill bg="danger">{data.length}</Badge>
+        </div>
+        {cartview?<Modal onClose={()=>setCartview(false)}><Cart/></Modal>:null}
        <Link className="btn bg-white text-success mx-1 fw-bolder " to="/login" onClick={handlelogout}>Logout</Link>
 
       </>
