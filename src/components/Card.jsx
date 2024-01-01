@@ -26,13 +26,13 @@ const Card = (props) => {
         break;
       }
     }
-    console.log("food",food);
+    // console.log("food",food);
     if(food==null){
-      await dispatch({type:"ADD",itemdata:{...props.itemData,qty:qty,size:size,price:options[0][size],finalprice}});
+      await dispatch({type:"ADD",itemdata:{_id,name,qty:qty,size:size,finalprice}});
       return
     }
     await dispatch({type:"UPDATE",id:_id, qty:qty,finalprice});
-    console.log(data);
+    // console.log(data);
   }
   return (
     <div>
@@ -74,7 +74,8 @@ const Card = (props) => {
             </div>
           </div>
           <hr />
-          <div className="btn bg-success text-white " onClick={handleAddCart}>Add to Cart</div>
+          <button className='btn bg-success ' onClick={handleAddCart}>Add to Cart</button>
+          
         </div>
       </div>
     </div>

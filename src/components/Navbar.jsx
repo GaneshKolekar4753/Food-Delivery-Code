@@ -27,7 +27,7 @@ const Navbar = () => {
         </li>
         {(localStorage.getItem("authToken"))?
         <li className="nav-item">
-        <Link className="nav-link active fs-5 fw-bolder" aria-current="page" to="/">My Orders</Link>
+        <Link className="nav-link active fs-5 fw-bolder" aria-current="page" to="/myorders">My Orders</Link>
         </li>
         :""
         }

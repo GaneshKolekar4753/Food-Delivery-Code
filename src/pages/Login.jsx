@@ -24,11 +24,14 @@ const Login = () => {
       alert(json.message);
     }
     if (json.success) {
+      
+      localStorage.setItem("authToken", json.authToken);
+      localStorage.setItem("userEmail", userDetials.email);
+      // console.log(localStorage.getItem("authToken"));
       setuserDetails({ email: "", password: "" });
       //if logged in then navigate to home page
       navigate("/");
-      localStorage.setItem("authToken", json.authToken);
-      // console.log(localStorage.getItem("authToken"));
+      
     }
   };
 

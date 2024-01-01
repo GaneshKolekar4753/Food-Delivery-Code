@@ -18,6 +18,9 @@ const reducer = (state, action) => {
         }
       })
       return arr;
+    case "DROP":
+      //make cart empty
+      return [];
     default:
       console.log("Error in reducer");
   }
