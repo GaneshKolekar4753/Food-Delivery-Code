@@ -9,7 +9,7 @@ const Home = () => {
   const [foodCat, setFoodCat] = useState([]);
   const [search, setsearch]=useState('');
   const loadData = async () => {
-    const response = await fetch("http://localhost:5000/api/home", {
+    const response = await fetch("https://foodcart-app.onrender.com/api/home", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

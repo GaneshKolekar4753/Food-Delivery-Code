@@ -7,7 +7,7 @@ export const MyOrders = () => {
 
   const fetchMyOrder = async () => {
     console.log(localStorage.getItem("userEmail"));
-    const response=await fetch("http://localhost:5000/api/myorders", {
+    const response=await fetch(`https://foodcart-app.onrender.com/api/myorders`, {
       // credentials: 'include',
       // Origin:"http://localhost:3000/login",
       method: "POST",

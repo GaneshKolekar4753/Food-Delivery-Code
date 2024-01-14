@@ -13,7 +13,7 @@ export default function Cart() {
   }
 
   const handleCheckout=async ()=>{
-    const response= await fetch("http://localhost:5000/api/orderdata",{
+    const response= await fetch(`https://foodcart-app.onrender.com/api/orderdata`,{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
